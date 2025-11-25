@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --azul-arroxeado: #6366f1;
+  --roxo-vibrante: #8b5cf6;
+  --roxo-escuro: #402285;
+  --azul-turquesa: #06b6d4;
+  --verde-azulado: #10b981;
+  --lavanda: #bea5fc;
+  --azul-escuro: #1e293b;
+  --azul-acizentado: #475569;
+  --preto:#000000;
+  --branco-fantasma: #f8fafc;
+  --fonte-titulo: "Orbitron", sans-serif;
+  --fonte-principal: "Exo 2", sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fonte-principal);
+   background-image: url(https://i.pinimg.com/originals/1b/3c/58/1b3c5821c4ef798f196b30cc3eb46ac2.gif);
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: var(--preto);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,10 @@
+.corpo {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 78.5vh;
+  background-image: url(https://images5.alphacoders.com/880/thumb-1920-880177.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}

@@ -1,0 +1,41 @@
+import pandas as pd
+from pathlib import Path
+from django.core.management.base import BaseCommand
+from django.db import transaction
+from api.models import Locais
+
+class Command(BaseCommand):
+    def add_arguments(self, parser):
+        parser.add_argument("--arquivo", default="./population/locais.csv")
+        parser.add_argument("--truncate", action="store_true")
+        parser.add_argument("--update", action="store_true")
+
+    @transaction.atomic
+    def handle(self, *a, **o):
+        df = pd.read_csv(o["arquivo"], encoding="utf-8")
+        df.columns = [c.strip().lower().lstrip("\ufeff") for c in df.columns]
+
+        if o["truncate"]:
+            Locais.objects.all().delete()
+        
+        df['local'] = df['local'].astype(str).str.strip()
+
+        if o["update"]:
+            criados = atualizados = 0
+            for r in df.itertuples(index=False):
+                created = Locais.objects.update_or_create(
+                    local=r.local
+                )
+
+                criados += int(created)
+                atualizados += int(not created)
+
+            self.stdout.write(self.style.SUCCESS(f'Criados: {criados} | Atualizados: {atualizados}'))
+        else:
+
+            objs = [Locais(
+                local=r.local
+            ) for r in df.itertuples(index=False)]
+           
+            Locais.objects.bulk_create(objs, ignore_conflicts=True)
+            self.stdout.write(self.style.SUCCESS(f'Criados: {len(objs)}'))

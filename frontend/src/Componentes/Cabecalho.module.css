@@ -1,0 +1,18 @@
+.cabecalho {
+  background: var(--roxo-escuro);
+  width: 100vw;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 20px;
+  text-align: center;
+}
+.titulo {
+  color: var(--texto-claro);
+}
+
+.logo {
+  height: 100px;
+  width: auto;
+}
