@@ -51,3 +51,13 @@ class RegisterSerializer(serializers.ModelSerializer):
             username=validated_data['username'],
             password=validated_data['password']
         )
+        
+    class HistoricoSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Sensores
+            fields = '__all__'
+ 
+class HistoricoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Historico
+        fields = '__all__'

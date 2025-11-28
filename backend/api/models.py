@@ -25,24 +25,25 @@ class Ambientes(models.Model):
         return self.descricao
     
 
-class Sensores(models.Model):
-    sensor = models.CharField(max_length=50)
-    mac_address = models.CharField(max_length=17, unique=True)
-    unidade_medida = models.CharField(max_length=10)
+class Sensores (models.Model):
+    sensor = models.CharField(max_length=100)
+    mac_address = models.CharField(max_length=50)
+    unidade_medida = models.CharField(max_length=50)
     latitude = models.FloatField()
     longitude = models.FloatField()
     status = models.BooleanField(default=True)
     ambiente = models.ForeignKey(Ambientes, on_delete=models.CASCADE)
-
+ 
     def __str__(self):
         return self.sensor
-
-
-class Historico(models.Model):
-    sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
-    ambiente = models.ForeignKey(Ambientes, on_delete=models.CASCADE)
+ 
+class Historico (models.Model):
+    sensor = models.ForeignKey(Sensores, to_field="id", on_delete=models.CASCADE)
     valor = models.FloatField()
-    timestamp = models.DateTimeField(auto_now_add=True)
-
+    timestamp = models.DateTimeField(null=True, blank=True)
+ 
     def __str__(self):
-        return f"{self.sensor} - {self.valor} ({self.timestamp:%d/%m/%Y %H:%M:%S})"
+        return self.valor
+    
+    
+    

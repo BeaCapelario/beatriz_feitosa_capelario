@@ -1,7 +1,8 @@
 import pandas as pd
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
-from api.models import Sensores, Ambientes
+from api.models import Sensores, Ambientes, Historico
+from django.utils import timezone
  
 class Command(BaseCommand):
     help = "Importa sensores do CSV population/sensores.csv"
@@ -58,11 +59,17 @@ class Command(BaseCommand):
                     atualizados += 1
             self.stdout.write(self.style.SUCCESS(f"Criados: {criados} | Atualizados: {atualizados}"))
  
+            if created:
+                Historico.objects.update_or_create(
+                    sensor = obj,
+                    valor = 10.5,
+                    timestamp = timezone.now()
+                    )
+       
         else:
             objs = []
             for r in df.itertuples(index=False):
-                objs.append(
-                    Sensores(
+                obj = Sensores.objects.create(
                         sensor=r.sensor,
                         mac_address=r.mac_address,
                         unidade_medida=r.unidade_medida,
@@ -70,8 +77,14 @@ class Command(BaseCommand):
                         longitude=r.longitude,
                         status=r.status,
                         ambiente_id=r.ambiente_id,
-                    )
+                )
+               
+               
+               
+                Historico.objects.update_or_create(
+                    sensor = obj,
+                    valor = 10.5,
+                    timestamp = timezone.now()
                 )
             Sensores.objects.bulk_create(objs, ignore_conflicts=True)
             self.stdout.write(self.style.SUCCESS(f"Sensores criados: {len(objs)}"))
- 

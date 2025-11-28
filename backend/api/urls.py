@@ -1,9 +1,11 @@
-from django.urls import path
+from django.urls import include, path
+from rest_framework import routers
 from rest_framework.routers import DefaultRouter
 from .views import (
     LocaisView, ResponsaveisView, AmbientesView, SensoresView,
     LocaisDetailView, ResponsaveisDetailView, 
-    AmbientesDetailView, SensoresDetailView, RegisterView
+    AmbientesDetailView, SensoresDetailView, RegisterView,
+    HistoricoView , HistoricoDetailView,
 )
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
@@ -24,6 +26,10 @@ urlpatterns = [
     path('token/',   TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('register/', RegisterView.as_view(), name='register'),
+    
+    path('historico/', HistoricoView.as_view(), name='historico-list'),
+    path('historico/<int:pk>', HistoricoDetailView.as_view(), name='historico-detail'),
 ]
 
-urlpatterns += router.urls
+
+

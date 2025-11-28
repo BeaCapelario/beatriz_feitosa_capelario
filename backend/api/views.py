@@ -96,7 +96,10 @@ class SensoresDetailView(RetrieveUpdateDestroyAPIView):
 class HistoricoView(ListCreateAPIView):
     queryset = Historico.objects.all()
     serializer_class = HistoricoSerializer
-    permission_classes = [AllowAny]
+ 
+class HistoricoDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = Historico.objects.all()
+    serializer_class = HistoricoSerializer
     
  # ==================== Register ==================== #   
 
