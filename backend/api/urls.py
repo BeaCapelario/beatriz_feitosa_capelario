@@ -1,35 +1,36 @@
-from django.urls import include, path
-from rest_framework import routers
-from rest_framework.routers import DefaultRouter
-from .views import (
-    LocaisView, ResponsaveisView, AmbientesView, SensoresView,
-    LocaisDetailView, ResponsaveisDetailView, 
-    AmbientesDetailView, SensoresDetailView, RegisterView,
-    HistoricoView , HistoricoDetailView,
-)
+from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+from .views import (
+    LocaisView, LocaisDetailView,
+    ResponsaveisView, ResponsaveisDetailView,
+    AmbientesView, AmbientesDetailView,
+    SensoresView, SensoresDetailView,
+    HistoricoView, HistoricoDetailView,
+    RegisterView, MedicoesView, MedicoesRecentesView, MedicoesPorSensorView
+)
+
 urlpatterns = [
+    path("locais/", LocaisView.as_view(), name="locais-list"),
+    path("locais/<int:pk>/", LocaisDetailView.as_view(), name="locais-detail"),
+
+    path("responsaveis/", ResponsaveisView.as_view(), name="responsaveis-list"),
+    path("responsaveis/<int:pk>/", ResponsaveisDetailView.as_view(), name="responsaveis-detail"),
+
+    path("ambientes/", AmbientesView.as_view(), name="ambientes-list"),
+    path("ambientes/<int:pk>/", AmbientesDetailView.as_view(), name="ambientes-detail"),
+
+    path("sensores/", SensoresView.as_view(), name="sensores-list"),
+    path("sensores/<int:pk>/", SensoresDetailView.as_view(), name="sensores-detail"),
+
+    path("historico/", HistoricoView.as_view(), name="historico-list"),
+    path("historico/<int:pk>/", HistoricoDetailView.as_view(), name="historico-detail"),
     
-    path('locais/', LocaisView.as_view(), name='locais-list'),
-    path('locais/<int:pk>/', LocaisDetailView.as_view(), name='locais-detail'),
+    path("medicoes/", MedicoesView.as_view(), name="medicoes-list"),
+    path("sensores/<int:sensor_id>/medicoes/", MedicoesPorSensorView.as_view(), name="medicoes-por-sensor"),
+    path("medicoes/recentes/", MedicoesRecentesView.as_view(), name="medicoes-recentes"),
 
-    path('responsaveis/', ResponsaveisView.as_view(), name='responsaveis-list'),
-    path('responsaveis/<int:pk>/', ResponsaveisDetailView.as_view(), name='responsaveis-detail'),
- 
-    path('ambientes/', AmbientesView.as_view(), name='ambientes-list'),
-    path('ambientes/<int:pk>/', AmbientesDetailView.as_view(), name='ambientes-detail'),
-
-    path('sensores/', SensoresView.as_view(), name='sensores-list'),
-    path('sensores/<int:pk>/', SensoresDetailView.as_view(), name='sensores-detail'),
-
-    path('token/',   TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('register/', RegisterView.as_view(), name='register'),
-    
-    path('historico/', HistoricoView.as_view(), name='historico-list'),
-    path('historico/<int:pk>', HistoricoDetailView.as_view(), name='historico-detail'),
+    path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("register/", RegisterView.as_view(), name="register"),
 ]
-
-
-

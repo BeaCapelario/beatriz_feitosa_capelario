@@ -4,6 +4,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from rest_framework.validators import UniqueValidator
 
+# ==================== Serializers Básicos ==================== #
+
 class LocaisSerializer(serializers.ModelSerializer):
     class Meta:
         model = Locais
@@ -28,8 +30,9 @@ class HistoricoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Historico
         fields = '__all__'
-        
-        
+
+# ==================== Register ==================== #
+
 User = get_user_model()
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -38,7 +41,9 @@ class RegisterSerializer(serializers.ModelSerializer):
         validators=[UniqueValidator(queryset=User.objects.all(), message="Usuário já existe.")]
     )
     password = serializers.CharField(
-        write_only=True, required=True, validators=[validate_password],
+        write_only=True,
+        required=True,
+        validators=[validate_password],
         style={'input_type': 'password'}
     )
 
@@ -51,13 +56,4 @@ class RegisterSerializer(serializers.ModelSerializer):
             username=validated_data['username'],
             password=validated_data['password']
         )
-        
-    class HistoricoSerializer(serializers.ModelSerializer):
-        class Meta:
-            model = Sensores
-            fields = '__all__'
- 
-class HistoricoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Historico
-        fields = '__all__'
+    

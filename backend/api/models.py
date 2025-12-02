@@ -24,7 +24,6 @@ class Ambientes(models.Model):
     def __str__(self):
         return self.descricao
     
-
 class Sensores (models.Model):
     sensor = models.CharField(max_length=100)
     mac_address = models.CharField(max_length=50)
@@ -44,6 +43,3 @@ class Historico (models.Model):
  
     def __str__(self):
         return self.valor
-    
-    
-    

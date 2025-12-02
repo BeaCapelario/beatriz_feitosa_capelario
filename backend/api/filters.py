@@ -1,33 +1,36 @@
 import django_filters as df
-from django.db.models import Q
 from .models import Locais, Responsaveis, Ambientes, Sensores, Historico
+
 
 class LocaisFilter(df.FilterSet):
     id = df.NumberFilter(field_name='id', lookup_expr='exact')
     local = df.CharFilter(field_name='local', lookup_expr='icontains')
-    
+
     class Meta:
         model = Locais
         fields = []
-        
+
+
 class ResponsaveisFilter(df.FilterSet):
     id = df.NumberFilter(field_name='id', lookup_expr='exact')
     nome = df.CharFilter(field_name='nome', lookup_expr='icontains')
-    
+
     class Meta:
         model = Responsaveis
         fields = []
-        
+
+
 class AmbientesFilter(df.FilterSet):
     id = df.NumberFilter(field_name='id', lookup_expr='exact')
     local = df.CharFilter(field_name='local', lookup_expr='icontains')
     descricao = df.CharFilter(field_name='descricao', lookup_expr='icontains')
     nome = df.CharFilter(field_name='nome', lookup_expr='icontains')
-    
+
     class Meta:
         model = Ambientes
         fields = []
-        
+
+
 class SensoresFilter(df.FilterSet):
     id = df.NumberFilter(field_name='id', lookup_expr='exact')
     sensor = df.CharFilter(field_name='sensor', lookup_expr='icontains')
@@ -39,22 +42,25 @@ class SensoresFilter(df.FilterSet):
     longitude_max = df.NumberFilter(field_name='longitude', lookup_expr='lte')
     status = df.BooleanFilter(field_name='status')
     ambiente = df.CharFilter(field_name='ambiente', lookup_expr='icontains')
-    
+
     class Meta:
         model = Sensores
         fields = []
-        
+
 class HistoricoFilter(df.FilterSet):
     id = df.NumberFilter(field_name='id', lookup_expr='exact')
-    sensor = df.CharFilter(field_name='sensor', lookup_expr='icontains')
-    descricao = df.CharFilter(field_name='descricao', lookup_expr='icontains')
+    sensor = df.CharFilter(field_name='sensor__sensor', lookup_expr='icontains')
     valor = df.NumberFilter(field_name='valor')
     timestamp = df.DateTimeFilter(field_name='timestamp')
-    
+
     class Meta:
         model = Historico
         fields = []
-        
-        
 
-    
+class MedicoesFilter(df.FilterSet):
+    data = df.DateFilter(field_name='timestamp', lookup_expr='date')
+    hora = df.TimeFilter(field_name='timestamp', lookup_expr='time')
+
+    class Meta:
+        model = Historico
+        fields = ['sensor']
