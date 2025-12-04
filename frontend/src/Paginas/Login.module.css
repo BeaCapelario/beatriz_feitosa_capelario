@@ -13,23 +13,22 @@
   --fonte-principal: "Exo 2", sans-serif;
 }
 
+/* ===== CONTAINER GERAL ===== */
 .container {
-  height: 78.5vh;
+  min-height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  margin-top: 25px;
-  
-
 }
 
+/* ===== FORMULÁRIO ===== */
 .formulario {
   background: rgba(190, 165, 252, 0.85);
   padding: 40px 35px;
   border-radius: 16px;
   width: 100%;
-  max-width: 600px;
+  max-width: 450px;
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -37,30 +36,45 @@
   border: 1px solid var(--azul-arroxeado);
 }
 
-.titulo {
-  text-align: center;
+/* ===== LOGO E TÍTULO ===== */
+.logoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 10px;
+}
+
+.logo {
+  width: 90px;
+  margin-bottom: 10px;
+}
+
+.title {
   font-family: var(--fonte-titulo);
   font-size: 2rem;
   color: var(--roxo-escuro);
   font-weight: 700;
+  text-align: center;
 }
 
+/* ===== LABELS ===== */
 label {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   color: var(--roxo-escuro);
   font-weight: 600;
   font-family: var(--fonte-principal);
 }
 
+/* ===== INPUTS ===== */
 input {
   padding: 12px 14px;
   border-radius: 8px;
   border: 1px solid var(--roxo-escuro);
-  background: rgb(240, 221, 255, 0.5);
+  background: rgba(240, 221, 255, 0.55);
   font-size: 1rem;
   outline: none;
-  transition: 0.3s;
+  transition: 0.3s ease;
+  font-family: var(--fonte-principal);
 }
 
 input::placeholder {
@@ -70,17 +84,31 @@ input::placeholder {
 
 input:focus {
   border-color: var(--roxo-escuro);
-  box-shadow: 0 0 0 3px rgba(107, 63, 160, 0.4);
+  box-shadow: 0 0 0 3px rgba(107, 63, 160, 0.35);
 }
 
-.botao {
+/* ===== MENSAGENS DE ERRO ===== */
+.error {
+  color: #b30000;
+  background: rgba(255, 0, 0, 0.08);
+  padding: 6px 10px;
+  border-radius: 5px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: var(--fonte-principal);
+  text-align: left;
+  border-left: 4px solid #b30000;
+}
+
+/* ===== BOTÃO ===== */
+.buttonLogin {
   width: 150px;
   margin: auto;
   margin-top: 10px;
   padding: 14px;
-  border-radius: 6px;
+  border-radius: 8px;
   font-family: var(--fonte-principal);
-  font-size: 15px;
+  font-size: 1rem;
   color: var(--branco-fantasma);
   cursor: pointer;
   background-color: var(--azul-arroxeado);
@@ -89,8 +117,17 @@ input:focus {
   font-weight: 600;
 }
 
-.botao:hover {
+.buttonLogin:hover {
   background-color: var(--azul-turquesa);
   box-shadow: 0 0 12px var(--azul-turquesa);
   transform: scale(1.05);
+}
+
+/* ===== BOTÃO DESATIVADO ===== */
+.buttonLogin:disabled {
+  background-color: var(--azul-acizentado);
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+  transform: none;
 }
