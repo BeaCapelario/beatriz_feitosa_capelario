@@ -37,3 +37,19 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+
+.historico-container {
+    background-color: red !important;
+    padding: 20px;
+}
+
+.historico-table {
+    border: 3px solid blue !important;
+    width: 100%;
+}
+
+.historico-table th {
+    background-color: green !important;
+    color: white !important;
+}
