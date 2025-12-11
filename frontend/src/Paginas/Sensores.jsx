@@ -21,34 +21,41 @@ export function Sensores() {
 
   return (
     <div className={estilo.container}>
-      <table className={estilo.sensores}>
-        <thead>
-          <tr>
-            <th>Tipo de Sensor</th>
-            <th>MAC Address</th>
-            <th>Unidade de Medida</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
-            <th>Status</th>
-            <th>Ambiente</th>
-          </tr>
-        </thead>
+      <div className={estilo.tableWrapper}>
 
-        <tbody>
-          {sensores.map((sensor) => (
-            <tr key={sensor.id}>
-              <td>{sensor.sensor}</td>
-              <td>{sensor.mac_address}</td>
-              <td>{sensor.unidade_medida}</td>
-              <td>{sensor.latitude}</td>
-              <td>{sensor.longitude}</td>
-              <td>{sensor.status}</td>
-              <td>{sensor.ambiente}</td>
-            </tr>
-          ))}
-        </tbody>
+        <h2 className={estilo.title}>Sensores Cadastrados</h2>
 
-      </table>
+        <div className={estilo.tableContainer}>
+          <table className={estilo.table}>
+            <thead>
+              <tr>
+                <th>Tipo de Sensor</th>
+                <th>MAC Address</th>
+                <th>Unidade de Medida</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Status</th>
+                <th>Ambiente</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {sensores.map((sensor) => (
+                <tr key={sensor.id}>
+                  <td className={estilo.sensorCell}>{sensor.sensor}</td>
+                  <td>{sensor.mac_address}</td>
+                  <td>{sensor.unidade_medida}</td>
+                  <td className={estilo.timestampCell}>{sensor.latitude}</td>
+                  <td className={estilo.timestampCell}>{sensor.longitude}</td>
+                  <td className={estilo.valorCell}>{sensor.status}</td>
+                  <td>{sensor.ambiente}</td>
+                </tr>
+              ))}
+            </tbody>
+
+          </table>
+        </div>
+      </div>
     </div>
   );
 }

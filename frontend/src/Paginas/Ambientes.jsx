@@ -61,9 +61,9 @@ export function Ambientes() {
                         <tbody>
                             {ambientes.map(ambiente => (
                                 <tr key={ambiente.id}>
-                                    <td className={estilo.sigCell}>{ambiente.sig}</td>
-                                    <td>{ambiente.description}</td>
-                                    <td>{ambiente.responsible_person}</td>
+                                    <td className={estilo.sigCell}>{ambiente.local}</td>
+                                    <td>{ambiente.descricao}</td>
+                                    <td>{ambiente.nome}</td>
                                 </tr>
                             ))}
                         </tbody>

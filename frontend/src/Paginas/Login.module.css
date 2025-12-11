@@ -13,16 +13,24 @@
   --fonte-principal: "Exo 2", sans-serif;
 }
 
-/* ===== CONTAINER GERAL ===== */
+:global(body) {
+  margin: 0;
+  padding: 0;
+}
+
 .container {
-  min-height: 80vh;
+  min-height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+
+  background-image: url("https://i.pinimg.com/originals/1b/3c/58/1b3c5821c4ef798f196b30cc3eb46ac2.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-/* ===== FORMULÁRIO ===== */
 .formulario {
   background: rgba(190, 165, 252, 0.85);
   padding: 40px 35px;
@@ -36,7 +44,6 @@
   border: 1px solid var(--azul-arroxeado);
 }
 
-/* ===== LOGO E TÍTULO ===== */
 .logoContainer {
   display: flex;
   flex-direction: column;
@@ -57,7 +64,6 @@
   text-align: center;
 }
 
-/* ===== LABELS ===== */
 label {
   font-size: 1.1rem;
   color: var(--roxo-escuro);
@@ -65,7 +71,6 @@ label {
   font-family: var(--fonte-principal);
 }
 
-/* ===== INPUTS ===== */
 input {
   padding: 12px 14px;
   border-radius: 8px;
@@ -87,7 +92,6 @@ input:focus {
   box-shadow: 0 0 0 3px rgba(107, 63, 160, 0.35);
 }
 
-/* ===== MENSAGENS DE ERRO ===== */
 .error {
   color: #b30000;
   background: rgba(255, 0, 0, 0.08);
@@ -100,7 +104,6 @@ input:focus {
   border-left: 4px solid #b30000;
 }
 
-/* ===== BOTÃO ===== */
 .buttonLogin {
   width: 150px;
   margin: auto;
@@ -123,7 +126,6 @@ input:focus {
   transform: scale(1.05);
 }
 
-/* ===== BOTÃO DESATIVADO ===== */
 .buttonLogin:disabled {
   background-color: var(--azul-acizentado);
   cursor: not-allowed;

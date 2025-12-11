@@ -1,10 +1,15 @@
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .corpo {
   flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 78.5vh;
+  width: 100%;
+  padding: 20px 0;
   background-image: url(https://images5.alphacoders.com/880/thumb-1920-880177.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 }

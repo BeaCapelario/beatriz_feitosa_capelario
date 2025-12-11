@@ -22,20 +22,11 @@
 }
 
 body {
-  margin: 0;
   font-family: var(--fonte-principal);
-   background-image: url(https://i.pinimg.com/originals/1b/3c/58/1b3c5821c4ef798f196b30cc3eb46ac2.gif);
-  background-size: cover;
-  background-repeat: no-repeat;
   color: var(--preto);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
 

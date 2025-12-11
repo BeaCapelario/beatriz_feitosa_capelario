@@ -1,4 +1,3 @@
-/* ===== VARIÁVEIS (para consistência) ===== */
 :root {
     --roxo-escuro: #402285;
     --roxo-vibrante: #8b5cf6;
@@ -11,7 +10,6 @@
     --fonte-principal: "Exo 2", sans-serif;
 }
 
-/* ===== CONTAINER GERAL ===== */
 .container {
     min-height: 78.5vh;
     display: flex;
@@ -20,7 +18,6 @@
     padding: 30px 20px;
 }
 
-/* ===== WRAPPER DA TABELA ===== */
 .tableWrapper {
     background: rgba(190, 165, 252, 0.85);
     backdrop-filter: blur(5px);
@@ -34,7 +31,6 @@
     border: 1px solid var(--azul-arroxeado);
 }
 
-/* ===== TÍTULO ===== */
 .title {
     font-family: var(--fonte-titulo);
     font-size: 2rem;
@@ -47,7 +43,6 @@
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* ===== CONTAINER DA TABELA ===== */
 .tableContainer {
     overflow-x: auto;
     border-radius: 12px;
@@ -61,7 +56,6 @@
     border: 1px solid rgba(139, 92, 246, 0.2);
 }
 
-/* ===== TABELA ===== */
 .table {
     width: 100%;
     border-collapse: collapse;
@@ -69,7 +63,6 @@
     min-width: 600px;
 }
 
-/* ===== CABEÇALHO DA TABELA ===== */
 .table thead {
     background: linear-gradient(135deg, var(--roxo-escuro), var(--roxo-vibrante));
     position: sticky;
@@ -98,7 +91,6 @@
     border-right: none;
 }
 
-/* ===== CORPO DA TABELA ===== */
 .table tbody tr {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border-bottom: 1px solid rgba(139, 92, 246, 0.15);
@@ -128,7 +120,6 @@
     border-right: none;
 }
 
-/* ===== CÉLULAS ESPECÍFICAS ===== */
 .sensorCell {
     font-weight: 700;
     color: var(--roxo-escuro);
@@ -167,7 +158,6 @@
     border: 1px solid rgba(64, 34, 133, 0.1);
 }
 
-/* ===== MENSAGENS (LOADING, ERROR, EMPTY) ===== */
 .loading {
     background: rgba(190, 165, 252, 0.9);
     padding: 40px 50px;
@@ -243,7 +233,6 @@
     opacity: 0.6;
 }
 
-/* ===== ANIMAÇÕES ===== */
 @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.7; }
@@ -253,7 +242,6 @@
     to { transform: rotate(360deg); }
 }
 
-/* ===== SCROLLBAR PERSONALIZADA ===== */
 .tableContainer::-webkit-scrollbar {
     width: 12px;
     height: 12px;
@@ -281,7 +269,6 @@
     background: transparent;
 }
 
-/* ===== RESPONSIVIDADE ===== */
 @media (max-width: 1024px) {
     .tableWrapper {
         max-width: 95%;
@@ -372,38 +359,5 @@
     .emptyMessage {
         padding: 20px;
         font-size: 1rem;
-    }
-}
-
-/* ===== EFEITOS DE FOCO PARA ACESSIBILIDADE ===== */
-.table tbody tr:focus-within {
-    outline: 2px solid var(--azul-turquesa);
-    outline-offset: 2px;
-    background: rgba(190, 165, 252, 0.3);
-}
-
-/* ===== ESTILOS PARA DARK MODE (opcional) ===== */
-@media (prefers-color-scheme: dark) {
-    .table tbody td {
-        color: #e2e8f0;
-    }
-    
-    .tableContainer {
-        background: rgba(30, 41, 59, 0.9);
-    }
-    
-    .sensorCell {
-        background: rgba(99, 102, 241, 0.2);
-        color: #c7d2fe;
-    }
-    
-    .valorCell {
-        background: rgba(6, 182, 212, 0.2);
-        color: #a5f3fc;
-    }
-    
-    .timestampCell {
-        background: rgba(64, 34, 133, 0.2);
-        color: #ddd6fe;
     }
 }
