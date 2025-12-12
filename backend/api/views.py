@@ -18,7 +18,6 @@ from .filters import (
     AmbientesFilter, SensoresFilter, HistoricoFilter, MedicoesFilter
 )
 
-# ==================== Locais ==================== #
 class LocaisView(ListCreateAPIView):
     queryset = Locais.objects.all()
     serializer_class = LocaisSerializer
@@ -35,7 +34,6 @@ class LocaisDetailView(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
 
 
-# ==================== Responsáveis ==================== #
 class ResponsaveisView(ListCreateAPIView):
     queryset = Responsaveis.objects.all()
     serializer_class = ResponsaveisSerializer
@@ -52,7 +50,6 @@ class ResponsaveisDetailView(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
 
 
-# ==================== Ambientes ==================== #
 class AmbientesView(ListCreateAPIView):
     queryset = Ambientes.objects.all()
     serializer_class = AmbientesSerializer
@@ -69,11 +66,10 @@ class AmbientesDetailView(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
 
 
-# ==================== Sensores ==================== #
 class SensoresView(ListCreateAPIView):
     queryset = Sensores.objects.all()
     serializer_class = SensoresSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_class = SensoresFilter
     search_fields = ['id', 'sensor', 'mac_address', 'status']
@@ -86,7 +82,6 @@ class SensoresDetailView(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
 
 
-# ==================== Histórico ==================== #
 class HistoricoView(ListCreateAPIView):
     queryset = Historico.objects.all()
     serializer_class = HistoricoSerializer
@@ -98,7 +93,6 @@ class HistoricoDetailView(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
 
 
-# ==================== Registro de Usuário ==================== #
 class RegisterView(ListCreateAPIView):
     permission_classes = [AllowAny]
     serializer_class = RegisterSerializer
@@ -121,7 +115,6 @@ class RegisterView(ListCreateAPIView):
         }, status=status.HTTP_201_CREATED)
 
 
-# ==================== Medições ==================== #
 class MedicoesView(ListCreateAPIView):
     queryset = Historico.objects.all()
     serializer_class = HistoricoSerializer
@@ -143,7 +136,6 @@ class MedicoesView(ListCreateAPIView):
         except Sensores.DoesNotExist:
             return Response({"erro": "Sensor não encontrado."}, status=status.HTTP_404_NOT_FOUND)
 
-        # Bloquear registro se o sensor estiver inativo
         if not sensor.status:
             return Response({"erro": "Não é possível registrar medições para um sensor inativo."}, status=status.HTTP_400_BAD_REQUEST)
 

@@ -4,7 +4,6 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from rest_framework.validators import UniqueValidator
 
-# ==================== Serializers Básicos ==================== #
 
 class LocaisSerializer(serializers.ModelSerializer):
     class Meta:
@@ -31,7 +30,6 @@ class HistoricoSerializer(serializers.ModelSerializer):
         model = Historico
         fields = '__all__'
 
-# ==================== Register ==================== #
 
 User = get_user_model()
 

@@ -21,7 +21,7 @@ class Command(BaseCommand):
             historicos.append(
                 Historico(
                     sensor=sensor,
-                    valor=random.uniform(10, 40),   # exemplo
+                    valor=random.uniform(10, 40),
                     timestamp=timezone.now()
                 )
             )

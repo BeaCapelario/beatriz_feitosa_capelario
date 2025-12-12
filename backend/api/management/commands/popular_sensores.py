@@ -19,7 +19,6 @@ class Command(BaseCommand):
         df = pd.read_csv(options["arquivo_sensores"], encoding="utf-8-sig")
         df.columns = [c.strip().lower() for c in df.columns]
 
-        # Limpeza e tipagem
         df["sensor"] = df["sensor"].astype(str).str.strip()
         df["mac_address"] = df["mac_address"].astype(str).str.strip()
         df["unidade_medida"] = df["unidade_medida"].astype(str).str.strip()
@@ -28,7 +27,6 @@ class Command(BaseCommand):
         df["status"] = df["status"].astype(bool)
         df["ambiente_id"] = df["ambiente"].astype(int)
 
-        # Validar se os ambientes existem
         ids_ambientes = set(Ambientes.objects.values_list("id", flat=True))
         ids_utilizados = set(df["ambiente_id"].unique())
         ids_faltando = ids_utilizados - ids_ambientes
@@ -36,15 +34,11 @@ class Command(BaseCommand):
         if ids_faltando:
             raise CommandError(f"Os seguintes ambientes NÃO existem no banco: {ids_faltando}")
 
-        # Truncate
         if options["truncate"]:
             Sensores.objects.all().delete()
             Historico.objects.all().delete()
             self.stdout.write(self.style.WARNING("Sensores e Histórico apagados!"))
 
-        # ------------------------------
-        # UPDATE OR CREATE
-        # ------------------------------
         if options["update"]:
             criados = 0
             atualizados = 0
@@ -67,7 +61,6 @@ class Command(BaseCommand):
                 else:
                     atualizados += 1
 
-                # Criar histórico básico
                 Historico.objects.create(
                     sensor=sensor_obj,
                     valor=10.5,
@@ -77,9 +70,6 @@ class Command(BaseCommand):
             self.stdout.write(self.style.SUCCESS(f"Criados: {criados} | Atualizados: {atualizados}"))
             return
 
-        # ------------------------------
-        # INSERÇÃO NORMAL (SEM UPDATE)
-        # ------------------------------
         sensores_objs = []
 
         for r in df.itertuples(index=False):
@@ -94,10 +84,8 @@ class Command(BaseCommand):
             )
             sensores_objs.append(sensor_obj)
 
-        # Inserção dos sensores
         Sensores.objects.bulk_create(sensores_objs, ignore_conflicts=True)
 
-        # Buscar sensores gravados (agora eles têm ID!)
         sensores_salvos = Sensores.objects.all()
 
         historicos_objs = []
